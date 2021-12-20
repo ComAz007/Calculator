@@ -3,8 +3,11 @@ package ComAz007.calculator
 import ComAz007.calculator.R.id.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import net.objecthunter.exp4j.ExpressionBuilder
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,6 +81,28 @@ class MainActivity : AppCompatActivity() {
 
             val fieldsRes: TextView = findViewById(R.id.result_text)
             fieldsRes.text=""
+        }
+
+        val btnEQ: TextView = findViewById(R.id.btn_equal)
+        btnEQ.setOnClickListener{
+            try {
+                val fieldsV: TextView = findViewById(R.id.math_operation)
+                val str= fieldsV.text.toString()
+
+                val ex=ExpressionBuilder(str).build()
+                val result=ex.evaluate()
+
+                val longRes=result.toLong()
+
+                if (result==longRes.toDouble())
+                    fieldsV.text=longRes.toString()
+                else
+                    fieldsV.text=result.toString()
+
+            }
+            catch (e:Exception){
+                Log.d("Ошибка", "сообщение: ${e.message}")
+            }
         }
 
     }
