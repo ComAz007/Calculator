@@ -99,11 +99,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         val btnEQ: TextView = findViewById(R.id.btn_equal)
-
+        //val fieldsV: TextView = findViewById(R.id.math_operation)
+        //val fieldsRes: TextView = findViewById(R.id.result_text)
         btnEQ.setOnClickListener{
             try {
-                val fieldsV: TextView = findViewById(R.id.math_operation)
-                val fieldsRes: TextView = findViewById(R.id.result_text)
+
                 val str= fieldsV.text.toString()
                 val operations = TokenScanner(str).scanOperations()
                 val result = Parser(operations).parse()
