@@ -89,15 +89,17 @@ class MainActivity : AppCompatActivity() {
                 val fieldsV: TextView = findViewById(R.id.math_operation)
                 val str= fieldsV.text.toString()
 
+                val fieldsRes: TextView = findViewById(R.id.result_text)
+
                 val ex=ExpressionBuilder(str).build()
                 val result=ex.evaluate()
 
                 val longRes=result.toLong()
 
                 if (result==longRes.toDouble())
-                    fieldsV.text=longRes.toString()
+                    fieldsRes.text=longRes.toString()
                 else
-                    fieldsV.text=result.toString()
+                    fieldsRes.text=result.toString()
 
             }
             catch (e:Exception){
@@ -108,6 +110,11 @@ class MainActivity : AppCompatActivity() {
     }
     fun setTextFields(str: String){
         val fieldsV: TextView = findViewById(R.id.math_operation)
+        val fieldsRes: TextView = findViewById(R.id.result_text)
+        if( fieldsRes.text !="") {
+            fieldsV.text = fieldsRes.text
+            fieldsRes.text = ""
+        }
         //btn10.setOncklickListener{setTextFields("0")}
         fieldsV.append(str)
     }
