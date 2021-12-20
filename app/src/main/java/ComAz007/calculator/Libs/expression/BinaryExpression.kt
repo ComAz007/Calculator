@@ -12,7 +12,7 @@ class BinaryExpression(
 ) : Expression {
 
     @Throws(ParseException::class)
-    override fun evaluate(): Int {
+    override fun evaluate(): Float {
         val leftValue = left.evaluate()
         val rightValue = right.evaluate()
         return when (token.type) {
@@ -20,7 +20,7 @@ class BinaryExpression(
             MINUS -> leftValue - rightValue
             STAR -> leftValue * rightValue
             DIV -> leftValue / rightValue
-            POW -> leftValue.toDouble().pow(rightValue.toDouble()).toInt()
+            POW -> leftValue.pow(rightValue)
             else -> throw ParseException("Unknown binary operator: $token")
         }
     }

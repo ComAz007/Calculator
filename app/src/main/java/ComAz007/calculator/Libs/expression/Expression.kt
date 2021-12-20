@@ -1,5 +1,5 @@
 package expression
 
 interface Expression {
-    fun evaluate(): Int
+    fun evaluate(): Float
 }
