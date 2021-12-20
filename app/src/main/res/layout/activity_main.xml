@@ -89,7 +89,7 @@
             </TextView>
             <TextView
                 style="@style/NumberButton"
-                android:id="@+id/btn_umnoj"
+                android:id="@+id/btn_mult"
                 android:text="*">
             </TextView>
         </LinearLayout>
