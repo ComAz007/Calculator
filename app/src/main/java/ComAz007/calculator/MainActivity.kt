@@ -1,14 +1,11 @@
 package ComAz007.calculator
 
-import ComAz007.calculator.R.id.*
 import TokenScanner
-import Parser
+import ComAz007.calculator.Libs.expression.Parser
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import android.widget.TextView
-import net.objecthunter.exp4j.ExpressionBuilder
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
