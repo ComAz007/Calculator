@@ -9,10 +9,29 @@ import android.widget.TextView
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
+    private val  fieldsV: TextView by lazy{ findViewById(R.id.math_operation)}
+    private val  fieldsRes: TextView by lazy{ findViewById(R.id.result_text)}
+
+    //val userName: String by lazy{ db.getUser().name}
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setupViews()
+    }
 
+    fun setTextFields(str: String){
+        //val fieldsV: TextView = findViewById(R.id.math_operation)
+        //val fieldsRes: TextView = findViewById(R.id.result_text)
+        if( fieldsRes.text !="") {
+            fieldsV.text = fieldsRes.text
+            fieldsRes.text = ""
+        }
+        //btn10.setOncklickListener{setTextFields("0")}
+        fieldsV.append(str)
+    }
+
+    fun setupViews(){
         val btn0: TextView = findViewById(R.id.btn_0)
         btn0.setOnClickListener{setTextFields("0")}
 
@@ -66,32 +85,28 @@ class MainActivity : AppCompatActivity() {
 
         val btnAC: TextView = findViewById(R.id.btn_clear)
         btnAC.setOnClickListener{
-            val fieldsV: TextView = findViewById(R.id.math_operation)
             fieldsV.text=""
-            val fieldsRes: TextView = findViewById(R.id.result_text)
             fieldsRes.text=""
         }
 
         val btnBS: TextView = findViewById(R.id.btn_back)
         btnBS.setOnClickListener{
-            val fieldsV: TextView = findViewById(R.id.math_operation)
+            //val fieldsV: TextView = findViewById(R.id.math_operation)
             val str= fieldsV.text.toString()
             fieldsV.text=str.substring(0,str.length-1)
-
-            val fieldsRes: TextView = findViewById(R.id.result_text)
+            //val fieldsRes: TextView = findViewById(R.id.result_text)
             fieldsRes.text=""
         }
 
         val btnEQ: TextView = findViewById(R.id.btn_equal)
+
         btnEQ.setOnClickListener{
             try {
                 val fieldsV: TextView = findViewById(R.id.math_operation)
+                val fieldsRes: TextView = findViewById(R.id.result_text)
                 val str= fieldsV.text.toString()
-
                 val operations = TokenScanner(str).scanOperations()
                 val result = Parser(operations).parse()
-
-                val fieldsRes: TextView = findViewById(R.id.result_text)
 
                 fieldsRes.text=result.evaluate().toString()
                 /*val ex=ExpressionBuilder(str).build()
@@ -109,16 +124,5 @@ class MainActivity : AppCompatActivity() {
                 Log.d("Ошибка", "сообщение: ${e.message}")
             }
         }
-
-    }
-    fun setTextFields(str: String){
-        val fieldsV: TextView = findViewById(R.id.math_operation)
-        val fieldsRes: TextView = findViewById(R.id.result_text)
-        if( fieldsRes.text !="") {
-            fieldsV.text = fieldsRes.text
-            fieldsRes.text = ""
-        }
-        //btn10.setOncklickListener{setTextFields("0")}
-        fieldsV.append(str)
     }
 }
