@@ -1,6 +1,8 @@
 package ComAz007.calculator
 
 import ComAz007.calculator.R.id.*
+import TokenScanner
+import Parser
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -89,9 +91,13 @@ class MainActivity : AppCompatActivity() {
                 val fieldsV: TextView = findViewById(R.id.math_operation)
                 val str= fieldsV.text.toString()
 
+                val operations = TokenScanner(str).scanOperations()
+                val result = Parser(operations).parse()
+
                 val fieldsRes: TextView = findViewById(R.id.result_text)
 
-                val ex=ExpressionBuilder(str).build()
+                fieldsRes.text=result.toString()
+                /*val ex=ExpressionBuilder(str).build()
                 val result=ex.evaluate()
 
                 val longRes=result.toLong()
@@ -99,7 +105,7 @@ class MainActivity : AppCompatActivity() {
                 if (result==longRes.toDouble())
                     fieldsRes.text=longRes.toString()
                 else
-                    fieldsRes.text=result.toString()
+                    fieldsRes.text=result.toString()*/
 
             }
             catch (e:Exception){
