@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
 
                 val fieldsRes: TextView = findViewById(R.id.result_text)
 
-                fieldsRes.text=result.toString()
+                fieldsRes.text=result.evaluate().toString()
                 /*val ex=ExpressionBuilder(str).build()
                 val result=ex.evaluate()
 
